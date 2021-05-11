@@ -1,0 +1,41 @@
+#include <iostream>
+using namespace std;
+
+int main() {
+	int n;
+	cin>>n;
+	int a[n];
+	for(int i=0;i<n;i++)
+	{
+	    cin>>a[i];
+	}
+
+	int ei[n];
+	ei[0]=a[0];
+	for(int i=1;i<n;i++)
+	{
+	    ei[i]=ei[i-1]+a[i];
+	}
+
+	int ls=0,rs=0,t=0;
+	int eq_index;
+	for(int i=1;i<n-2;i++)
+	{
+	    ls=ei[i-1];
+	    rs=ei[n-1]-ei[i];
+	    if(ls==rs)
+	    {
+	        eq_index=i;
+	        t=1;
+	        break;
+	    }
+	}
+	if(t==1)
+	{
+	    cout<<eq_index;
+	}
+	else{
+	    cout<<-1;
+	}
+	return 0;
+}
