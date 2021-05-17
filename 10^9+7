@@ -1,4 +1,4 @@
-#include<studio.h>
+#include<bits/stdc++.h>
 Using namespace std;
 unsigned long long factorial(int n)
 {
