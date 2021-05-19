@@ -1,0 +1,29 @@
+Class combinationSum
+public List<List<Integer>> combinationSum(int[] candidates, int target) 
+{
+        List<List<Integer>> list = new ArrayList<>();
+        List<Integer> tmp = new ArrayList<>();
+        sumUpCandidates(candidates, 0, target, 0, tmp, list);
+        return list;
+    }
+    
+    private void sumUpCandidates(int[] candidates, int begin, int target, int sum, List<Integer> l, List<List<Integer>> list)
+    {
+        if(sum > target)
+        {
+            return;
+        }
+        
+        if(sum == target)
+        {
+            list.add(new ArrayList<>(l));
+            return;
+        }
+        
+        for(int i = begin; i < candidates.length; i++)
+        {
+            l.add(candidates[i]);
+            sumUpCandidates(candidates, i, target, sum + candidates[i], l, list);
+            l.remove(l.size() - 1);
+        }
+    }
