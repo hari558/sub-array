@@ -1,0 +1,49 @@
+#include <iostream>
+#include <unordered_map>
+using namespace std;
+struct Node
+{
+    int key;
+    Node *left, *right;
+ 
+    Node(int key)
+    {
+        this->key = key;
+        this->left = this->right = nullptr;
+    }
+};
+void printRightView(Node* root, int level, auto &map)
+{
+    if (root == nullptr)
+ {
+        return;
+    }    
+    map[level] = root->key;   
+    printRightView(root->left, level + 1, map);
+    printRightView(root->right, level + 1, map);
+}
+int printRightView(Node* root)
+{  
+    unordered_map<int, int> map; 
+  printRightView(root, 1, map);
+    for (int i = 1; i <= map.size(); i++)
+ {
+        cout << map[i] << " ";
+    }
+}
+ 
+int main()
+{
+    Node* root = new Node(1);
+    root->left = new Node(2);
+    root->right = new Node(3);
+    root->left->right = new Node(4);
+    root->right->left = new Node(5);
+    root->right->right = new Node(6);
+    root->right->left->left = new Node(7);
+    root->right->left->right = new Node(8);
+ 
+    printRightView(root);
+ 
+    return 0;
+}
